@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface BooksRepository extends JpaRepository<Book, Integer> {
 
+    //Declaring functions
     List<Book> findByTitle(String title);
     List<Book> findByAuthFName(String name);
     List<Book> findByAuthLName(String name);

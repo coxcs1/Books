@@ -6,10 +6,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
+/**
+ * Object class used for querying database.
+ */
 public class Book {
 
     @Id
     @GeneratedValue
+    // Declarations and coulmn specifications. Make column names exact match to database.
     @Column(name = "Book_Id")
     private int bookId;
     @Column(name = "Book_Title")
@@ -21,9 +25,7 @@ public class Book {
     @Column(name = "Library_Id")
     private int libId;
 
-
-    public Book() {
-    }
+    // Getters and Setters
 
     public int getBookId() {
         return bookId;
