@@ -81,4 +81,27 @@ public class BooksResource {
         return bookRepository.findByLibId(id);
     }
 
+    // URL added to primary portion. Also allows user input. E.X. localhost:8080/delete/1
+    @GetMapping(value = "/delete/{id}")
+    /**
+     *  Functions delete an entry from database depending on user specified id.
+     * @return List of corresponding books from the micro-service.
+     */
+    public String delete(@PathVariable(value = "id") int id)  {
+        bookRepository.deleteById(id);
+        return "Success";
+    }
+
+    // URL added to primary portion. E.X. localhost:8080/members/insert
+    @GetMapping(value = "/insert/{title}/{authFName}/{authLName}/{libId}")
+    /**
+     *  Function inserts new book object into database.
+     */
+    public String insert(@PathVariable(value = "title") String title, @PathVariable(value = "authFName") String authFName,
+                         @PathVariable(value = "authLName") String authLName, @PathVariable(value = "libId") int libId) {
+        Book temp = new Book(0,title, authFName, authLName, libId);
+        bookRepository.save(temp);
+        return "Success";
+    }
+
 }

@@ -12,6 +12,6 @@ public interface BooksRepository extends JpaRepository<Book, Integer> {
     List<Book> findByAuthLName(String name);
     List<Book> findByBookId(int id);
     List<Book> findByLibId(int id);
-
+    String deleteById(int id);
 
 }

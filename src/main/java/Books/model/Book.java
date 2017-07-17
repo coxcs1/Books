@@ -25,6 +25,18 @@ public class Book {
     @Column(name = "Library_Id")
     private int libId;
 
+
+    public Book() {
+    }
+
+    public Book(int bookId, String title, String authFName, String authLName, int libId) {
+        this.bookId = bookId;
+        this.title = title;
+        this.authFName = authFName;
+        this.authLName = authLName;
+        this.libId = libId;
+    }
+
     // Getters and Setters
 
     public int getBookId() {
