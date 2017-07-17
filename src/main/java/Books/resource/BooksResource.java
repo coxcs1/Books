@@ -41,6 +41,14 @@ public class BooksResource {
         return bookRepository.findByAuthLName(lname);
     }
 
+    @GetMapping(value = "/bookId/{id}")
+    public List<Book> getBookId(@PathVariable(value = "id") int id)  {
+        return bookRepository.findByBookId(id);
+    }
 
+    @GetMapping(value = "/libId/{id}")
+    public List<Book> getLibId(@PathVariable(value = "id") int id)  {
+        return bookRepository.findByLibId(id);
+    }
 
 }
