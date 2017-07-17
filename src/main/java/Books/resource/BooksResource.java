@@ -3,6 +3,7 @@ package Books.resource;
 import Books.model.Book;
 import Books.repository.BooksRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -87,8 +88,9 @@ public class BooksResource {
      *  Functions delete an entry from database depending on user specified id.
      * @return List of corresponding books from the micro-service.
      */
+    @Transactional
     public String delete(@PathVariable(value = "id") int id)  {
-        bookRepository.deleteById(id);
+        bookRepository.deleteByBookId(id);
         return "Success";
     }
 
