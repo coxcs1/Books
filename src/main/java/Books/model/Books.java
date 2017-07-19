@@ -9,11 +9,11 @@ import javax.persistence.Id;
 /**
  * Object class used for querying database.
  */
-public class Book {
+public class Books {
 
     @Id
     @GeneratedValue
-    // Declarations and coulmn specifications. Make column names exact match to database.
+    // Declarations and column specifications. Make column names exact match to database.
     @Column(name = "Book_Id")
     private int bookId;
     @Column(name = "Book_Title")
@@ -24,17 +24,20 @@ public class Book {
     private String authLName;
     @Column(name = "Library_Id")
     private int libId;
+    @Column (name = "Book_Check")
+    private int check;
 
 
-    public Book() {
+    public Books() {
     }
 
-    public Book(int bookId, String title, String authFName, String authLName, int libId) {
+    public Books(int bookId, String title, String authFName, String authLName, int libId, int check) {
         this.bookId = bookId;
         this.title = title;
         this.authFName = authFName;
         this.authLName = authLName;
         this.libId = libId;
+        this.check = check;
     }
 
     // Getters and Setters
@@ -77,5 +80,13 @@ public class Book {
 
     public void setLibId(int libId) {
         this.libId = libId;
+    }
+
+    public int getInOut() {
+        return check;
+    }
+
+    public void setInOut(int check) {
+        this.check = check;
     }
 }

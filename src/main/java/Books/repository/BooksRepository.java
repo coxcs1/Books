@@ -1,17 +1,18 @@
 package Books.repository;
 
-import Books.model.Book;
+import Books.model.Books;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
-public interface BooksRepository extends JpaRepository<Book, Integer> {
+public interface BooksRepository extends JpaRepository<Books, Integer> {
 
     //Declaring functions
-    List<Book> findByTitle(String title);
-    List<Book> findByAuthFName(String name);
-    List<Book> findByAuthLName(String name);
-    List<Book> findByBookId(int id);
-    List<Book> findByLibId(int id);
+    List<Books> findByTitle(String title);
+    List<Books> findByAuthFName(String name);
+    List<Books> findByAuthLName(String name);
+    List<Books> findByBookId(int id);
+    List<Books> findByLibId(int id);
+    List<Books> findByCheck(int id);
     String deleteByBookId(int id);
 
 }

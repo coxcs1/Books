@@ -1,6 +1,6 @@
 package Books.resource;
 
-import Books.model.Book;
+import Books.model.Books;
 import Books.repository.BooksRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,13 +21,13 @@ public class BooksResource {
      *  Function querys the micro-service for all of the database.
      * @return List of all books from the micro-service.
      */
-    public List<Book> getAll() {
+    public List<Books> getAll() {
         return bookRepository.findAll();
     }
 
     // URL added to primary portion. E.X. localhost:8080/load
     @PostMapping(value = "/load")
-    public List<Book> persist(@RequestBody final Book book) {
+    public List<Books> persist(@RequestBody final Books book) {
         bookRepository.save(book);
         return bookRepository.findAll();
     }
@@ -38,7 +38,7 @@ public class BooksResource {
      *  Function querys the micro-service for all entries with matching user input.
      * @return List of corresponding books from the micro-service.
      */
-    public List<Book> getTitle(@PathVariable(value = "title") String title)  {
+    public List<Books> getTitle(@PathVariable(value = "title") String title)  {
         return bookRepository.findByTitle(title);
     }
 
@@ -48,7 +48,7 @@ public class BooksResource {
      *  Function querys the micro-service for all entries with matching author first name from user input.
      * @return List of corresponding books from the micro-service.
      */
-    public List<Book> getFName(@PathVariable(value = "fname") String fname)  {
+    public List<Books> getFName(@PathVariable(value = "fname") String fname)  {
         return bookRepository.findByAuthFName(fname);
     }
 
@@ -58,7 +58,7 @@ public class BooksResource {
      *  Function querys the micro-service for all entries with matching author last name from user input.
      * @return List of corresponding books from the micro-service.
      */
-    public List<Book> getLName(@PathVariable(value = "lname") String lname)  {
+    public List<Books> getLName(@PathVariable(value = "lname") String lname)  {
         return bookRepository.findByAuthLName(lname);
     }
 
@@ -68,7 +68,7 @@ public class BooksResource {
      *  Functions querys the micro-service for all entries with matching id from user input.
      * @return List of corresponding books from the micro-service.
      */
-    public List<Book> getBookId(@PathVariable(value = "id") int id)  {
+    public List<Books> getBookId(@PathVariable(value = "id") int id)  {
         return bookRepository.findByBookId(id);
     }
 
@@ -78,8 +78,18 @@ public class BooksResource {
      *  Functions querys the micro-service for all entries with matching id from user input.
      * @return List of corresponding books from the micro-service.
      */
-    public List<Book> getLibId(@PathVariable(value = "id") int id)  {
+    public List<Books> getLibId(@PathVariable(value = "id") int id)  {
         return bookRepository.findByLibId(id);
+    }
+
+    // URL added to primary portion. Also allows user input. E.X. localhost:8080/inOut/1
+    @GetMapping(value = "/check/{id}")
+    /**
+     *  Functions querys the micro-service for all entries with matching id from user input.
+     * @return List of corresponding books from the micro-service.
+     */
+    public List<Books> getCheck(@PathVariable(value = "id") int id)  {
+        return bookRepository.findByCheck(id);
     }
 
     // URL added to primary portion. Also allows user input. E.X. localhost:8080/delete/1
@@ -101,7 +111,7 @@ public class BooksResource {
      */
     public String insert(@PathVariable(value = "title") String title, @PathVariable(value = "authFName") String authFName,
                          @PathVariable(value = "authLName") String authLName, @PathVariable(value = "libId") int libId) {
-        Book temp = new Book(0,title, authFName, authLName, libId);
+        Books temp = new Books(0,title, authFName, authLName, libId, 1);
         bookRepository.save(temp);
         return "Success";
     }
