@@ -26,18 +26,21 @@ public class Books {
     private int libId;
     @Column (name = "Book_Check")
     private int check;
+    @Column (name = "Mid")
+    private int mid;
 
 
     public Books() {
     }
 
-    public Books(int bookId, String title, String authFName, String authLName, int libId, int check) {
+    public Books(int bookId, String title, String authFName, String authLName, int libId, int check, int mid) {
         this.bookId = bookId;
         this.title = title;
         this.authFName = authFName;
         this.authLName = authLName;
         this.libId = libId;
         this.check = check;
+        this.mid = mid;
     }
 
     // Getters and Setters
@@ -82,11 +85,19 @@ public class Books {
         this.libId = libId;
     }
 
-    public int getInOut() {
+    public int getCheck() {
         return check;
     }
 
-    public void setInOut(int check) {
+    public void setCheck(int check) {
         this.check = check;
+    }
+
+    public int getMid() {
+        return mid;
+    }
+
+    public void setMid(int mid) {
+        this.mid = mid;
     }
 }

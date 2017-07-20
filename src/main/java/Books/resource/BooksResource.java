@@ -92,6 +92,29 @@ public class BooksResource {
         return bookRepository.findByCheck(id);
     }
 
+
+
+    // URL added to primary portion. E.X. localhost:8080/members/insert
+    @GetMapping(value = "/cho/{titleId}/{mid}")
+    /**
+     *  Function inserts new book object into database.
+     */
+    @Transactional
+    public String checkout(@PathVariable(value = "titleId") int titleId,
+                           @PathVariable(value = "mid") int mid ){
+        Books b = bookRepository.findOne(titleId);
+        b.setCheck(2);
+        b.setMid(mid);
+
+        bookRepository.save(b);
+        return "Success" + mid;
+    }
+
+
+
+
+
+
     // URL added to primary portion. Also allows user input. E.X. localhost:8080/delete/1
     @GetMapping(value = "/delete/{id}")
     /**
@@ -111,9 +134,10 @@ public class BooksResource {
      */
     public String insert(@PathVariable(value = "title") String title, @PathVariable(value = "authFName") String authFName,
                          @PathVariable(value = "authLName") String authLName, @PathVariable(value = "libId") int libId) {
-        Books temp = new Books(0,title, authFName, authLName, libId, 1);
+        Books temp = new Books(0,title, authFName, authLName, libId, 1, 0);
         bookRepository.save(temp);
         return "Success";
     }
+
 
 }
