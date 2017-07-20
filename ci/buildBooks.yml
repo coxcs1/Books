@@ -1,0 +1,21 @@
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: maven
+
+inputs:
+- name: 12FactorSpringBootBooks
+
+outputs:
+- name: built-books
+
+run:
+  path: sh
+  args:
+  - -exc
+  - |
+    cd 12FactorSpringBootBooks
+    mvn package
+    cp ./target/Books-0.0.1-SNAPSHOT.jar ../built-books/demo.jar
