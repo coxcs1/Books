@@ -95,15 +95,16 @@ public class BooksResource {
 
 
     // URL added to primary portion. E.X. localhost:8080/members/insert
-    @GetMapping(value = "/cho/{titleId}/{mid}")
+    @GetMapping(value = "/cho/{titleId}/{check}/{mid}")
     /**
      *  Function inserts new book object into database.
      */
     @Transactional
     public String checkout(@PathVariable(value = "titleId") int titleId,
-                           @PathVariable(value = "mid") int mid ){
+                           @PathVariable(value = "mid") int mid,
+                           @PathVariable(value = "check") int check){
         Books b = bookRepository.findOne(titleId);
-        b.setCheck(2);
+        b.setCheck(check);
         b.setMid(mid);
 
         bookRepository.save(b);

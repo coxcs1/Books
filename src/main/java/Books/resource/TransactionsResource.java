@@ -37,11 +37,10 @@ public class TransactionsResource {
         return transactionRepository.findAll();
     }
 
-
     // URL added to primary portion. E.X. localhost:8080/members/insert
     @GetMapping(value = "/insert/{bookId}/{check}/{Mid}")
     /**
-     *  Function inserts new book object into database.
+     *  Function inserts new transaction object into database.
      */
     @Transactional
     public String insert(@PathVariable(value = "bookId") int bookId, @PathVariable(value = "check") int check,
