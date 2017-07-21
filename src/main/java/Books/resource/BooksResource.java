@@ -15,6 +15,17 @@ public class BooksResource {
     @Autowired
     BooksRepository bookRepository;
 
+    // URL added to primary portion. Also allows user input. E.X. localhost:8080/delete/1
+    @GetMapping(value = "/delete/{bookId}")
+    /**
+     *  Functions delete an entry from database depending on user specified id.
+     * @return List of corresponding books from the micro-service.
+     */
+    @Transactional
+    public void delete(@PathVariable(value = "bookId") int bookId)  {
+        bookRepository.deleteByBookId(bookId);
+    }
+
     // URL added to primary portion. E.X. localhost:8080/books/all
     @GetMapping(value = "/all")
     /**
@@ -111,22 +122,6 @@ public class BooksResource {
         return "Success" + mid;
     }
 
-
-
-
-
-
-    // URL added to primary portion. Also allows user input. E.X. localhost:8080/delete/1
-    @GetMapping(value = "/delete/{id}")
-    /**
-     *  Functions delete an entry from database depending on user specified id.
-     * @return List of corresponding books from the micro-service.
-     */
-    @Transactional
-    public String delete(@PathVariable(value = "id") int id)  {
-        bookRepository.deleteByBookId(id);
-        return "Success";
-    }
 
     // URL added to primary portion. E.X. localhost:8080/members/insert
     @GetMapping(value = "/insert/{title}/{authFName}/{authLName}/{libId}")
