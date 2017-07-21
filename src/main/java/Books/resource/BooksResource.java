@@ -92,6 +92,8 @@ public class BooksResource {
         return bookRepository.findByCheck(id);
     }
 
+
+
     // URL added to primary portion. E.X. localhost:8080/members/insert
     @GetMapping(value = "/cho/{titleId}/{check}/{mid}")
     /**
@@ -108,6 +110,11 @@ public class BooksResource {
         bookRepository.save(b);
         return "Success" + mid;
     }
+
+
+
+
+
 
     // URL added to primary portion. Also allows user input. E.X. localhost:8080/delete/1
     @GetMapping(value = "/delete/{id}")
