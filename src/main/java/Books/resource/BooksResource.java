@@ -49,7 +49,7 @@ public class BooksResource {
      *  Function querys the micro-service for all entries with matching user input.
      * @return List of corresponding books from the micro-service.
      */
-    public List<Books> getTitle(@PathVariable(value = "title") String title)  {
+    public List<Books> getByTitle(@PathVariable(value = "title") String title)  {
         return bookRepository.findByTitle(title);
     }
 
@@ -59,7 +59,7 @@ public class BooksResource {
      *  Function querys the micro-service for all entries with matching author first name from user input.
      * @return List of corresponding books from the micro-service.
      */
-    public List<Books> getFName(@PathVariable(value = "fname") String fname)  {
+    public List<Books> getByFName(@PathVariable(value = "fname") String fname)  {
         return bookRepository.findByAuthFName(fname);
     }
 
@@ -69,7 +69,7 @@ public class BooksResource {
      *  Function querys the micro-service for all entries with matching author last name from user input.
      * @return List of corresponding books from the micro-service.
      */
-    public List<Books> getLName(@PathVariable(value = "lname") String lname)  {
+    public List<Books> getByLName(@PathVariable(value = "lname") String lname)  {
         return bookRepository.findByAuthLName(lname);
     }
 
@@ -79,7 +79,7 @@ public class BooksResource {
      *  Functions querys the micro-service for all entries with matching id from user input.
      * @return List of corresponding books from the micro-service.
      */
-    public List<Books> getBookId(@PathVariable(value = "id") int id)  {
+    public List<Books> getByBookId(@PathVariable(value = "id") int id)  {
         return bookRepository.findByBookId(id);
     }
 
@@ -89,7 +89,7 @@ public class BooksResource {
      *  Functions querys the micro-service for all entries with matching id from user input.
      * @return List of corresponding books from the micro-service.
      */
-    public List<Books> getLibId(@PathVariable(value = "id") int id)  {
+    public List<Books> getByLibId(@PathVariable(value = "id") int id)  {
         return bookRepository.findByLibId(id);
     }
 
@@ -99,7 +99,7 @@ public class BooksResource {
      *  Functions querys the micro-service for all entries with matching id from user input.
      * @return List of corresponding books from the micro-service.
      */
-    public List<Books> getCheck(@PathVariable(value = "id") int id)  {
+    public List<Books> getByCheck(@PathVariable(value = "id") int id)  {
         return bookRepository.findByCheck(id);
     }
 
