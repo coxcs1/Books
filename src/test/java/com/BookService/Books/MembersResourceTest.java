@@ -1,9 +1,8 @@
 package com.BookService.Books;
 
-import java.awt.print.Book;
+
 import java.util.Arrays;
 import java.util.List;
-
 import Books.model.Books;
 import Books.model.Member;
 import Books.resource.BooksResource;
@@ -55,7 +54,6 @@ public class MembersResourceTest {
         String expected = "[{id:1,fname:Ricky,lname:Clevinger},{id:2,fname:Ben,lname:Coalson}]";
 
         JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
-        //System.out.println(result.getResponse().getContentAsString());
     }
 
 
@@ -65,10 +63,10 @@ public class MembersResourceTest {
         mockMem = Arrays.asList(mockFullList.get(1));
 
         Mockito.when(
-                membersResource.getId(2)).thenReturn(mockMem);
+                membersResource.getId(1)).thenReturn(mockMem);
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
-                "/members/id/2").accept(
+                "/members/id/1").accept(
                 MediaType.APPLICATION_JSON);
 
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
@@ -77,7 +75,6 @@ public class MembersResourceTest {
         String expected = "[{id:2,fname:Ben,lname:Coalson}]";
 
         JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
-        System.out.println(result.getResponse().getContentAsString());
     }
 
 }
