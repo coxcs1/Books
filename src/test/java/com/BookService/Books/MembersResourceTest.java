@@ -36,8 +36,6 @@ public class MembersResourceTest {
             new Member(2, "Ben", "Coalson"));
     List <Member> mockMem;
 
-    String exampleMemberJson = "{\"id\":\"1\",\"fname\":\"Ricky\",\"lname\":Clevinger}";
-
     @Test
     public void getAllTest() throws Exception {
 
@@ -63,10 +61,10 @@ public class MembersResourceTest {
         mockMem = Arrays.asList(mockFullList.get(1));
 
         Mockito.when(
-                membersResource.getId(1)).thenReturn(mockMem);
+                membersResource.getId(2)).thenReturn(mockMem);
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
-                "/members/id/1").accept(
+                "/members/id/2").accept(
                 MediaType.APPLICATION_JSON);
 
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
@@ -76,5 +74,6 @@ public class MembersResourceTest {
 
         JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
     }
+
 
 }

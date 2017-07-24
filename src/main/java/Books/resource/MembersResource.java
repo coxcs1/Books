@@ -26,13 +26,7 @@ public class MembersResource {
         return memRepository.findAll();
     }
 
-
-    @PostMapping(value = "/load")
-    public List<Member> persist(@RequestBody final Member member) {
-        memRepository.save(member);
-        return memRepository.findAll();
-    }
-
+    
     // URL added to primary portion. Also allows user input. E.X. localhost:8080/fname/Ricky
     @GetMapping(value = "/fname/{fname}")
     /**
