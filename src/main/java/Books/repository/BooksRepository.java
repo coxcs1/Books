@@ -22,6 +22,6 @@ public interface BooksRepository extends JpaRepository<Books, Integer> {
     List<Books> findByLibId(int id);
     List<Books> findByCheck(int id);
 
-    //List<Transaction> findByBookIdOrderByTranDateDesc();
+
 
 }
