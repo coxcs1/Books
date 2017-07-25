@@ -1,4 +1,4 @@
-package com.BookService.Books;
+package com.BookService.Books.resourceTests;
 
 import Books.model.Books;
 import Books.resource.BooksResource;
@@ -20,7 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(value = MembersResource.class, secure = false)
+@WebMvcTest(value = BooksResource.class, secure = false)
 public class BooksResourceTest {
 
 

@@ -1,4 +1,4 @@
-package com.BookService.Books;
+package com.BookService.Books.resourceTests;
 
 
 import java.util.Arrays;
@@ -22,7 +22,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(value = BooksResource.class, secure = false)
+@WebMvcTest(value = MembersResource.class, secure = false)
 public class MembersResourceTest {
 
     @Autowired
