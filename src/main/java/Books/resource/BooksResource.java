@@ -104,7 +104,6 @@ public class BooksResource {
     }
 
 
-
     // URL added to primary portion. E.X. localhost:8080/members/insert
     @GetMapping(value = "/cho/{titleId}/{check}/{mid}")
     /**

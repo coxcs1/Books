@@ -28,14 +28,14 @@ public class TransactionsResource {
      */
     public List<Transaction> getAll() {
         return transactionRepository.findAll();
-    }
+    }//end getAll
 
     // URL added to primary portion. E.X. localhost:8080/load
     @PostMapping(value = "/load")
     public List<Transaction> persist(@RequestBody final Transaction transaction) {
         transactionRepository.save(transaction);
         return transactionRepository.findAll();
-    }
+    }//end persist
 
     // URL added to primary portion. E.X. localhost:8080/members/insert
     @GetMapping(value = "/insert/{bookId}/{check}/{Mid}")
@@ -49,7 +49,7 @@ public class TransactionsResource {
         Transaction temp = new Transaction(2,bookId, timestamp, check, Mid);
         transactionRepository.save(temp);
         return "Success";
-    }
+    }//end insert
 
 
 }
