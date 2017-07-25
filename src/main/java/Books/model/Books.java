@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.sql.Date;
+import java.sql.Timestamp;
 
 @Entity
 /**
@@ -28,6 +30,8 @@ public class Books {
     private int check;
     @Column (name = "Mid")
     private int mid;
+    @Column (name = "Book_Out_Date")
+    private Date outDate;
 
 
     public Books() {
@@ -99,5 +103,13 @@ public class Books {
 
     public void setMid(int mid) {
         this.mid = mid;
+    }
+
+    public Date getOutDate() {
+        return outDate;
+    }
+
+    public void setOutDate(Date outDate) {
+        this.outDate = outDate;
     }
 }

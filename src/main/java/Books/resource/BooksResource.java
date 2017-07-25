@@ -5,6 +5,9 @@ import Books.repository.BooksRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 @RestController
@@ -114,8 +117,14 @@ public class BooksResource {
                            @PathVariable(value = "mid") int mid,
                            @PathVariable(value = "check") int check){
         Books b = bookRepository.findOne(titleId);
+        Date date = new Date(System.currentTimeMillis());
         b.setCheck(check);
         b.setMid(mid);
+        if (mid == 0){
+            b.setOutDate(null);
+        }
+        else
+            b.setOutDate(date);
 
         bookRepository.save(b);
         return "Success" + mid;
