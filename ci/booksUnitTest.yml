@@ -8,7 +8,7 @@ image_resource:
     tag: "latest"
 
 inputs:
-- name: go-library-source
+- name: 12FactorSpringBooks
 
 run:
   path: sh
