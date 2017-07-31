@@ -70,7 +70,7 @@ public class Transaction {
         return check;
     }
 
-    public void setCheck(int Check) {
+    public void setCheck(int check) {
         this.check = check;
     }
 

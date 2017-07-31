@@ -42,7 +42,7 @@ public class TransactionTest {
     }//end getSetBookIdTest
 
     @Test
-    public void getSetLNameTest() throws Exception {
+    public void getSetTDateTest() throws Exception {
 
         //setter
         mockTran.setTDate(new Timestamp(0));
@@ -55,6 +55,38 @@ public class TransactionTest {
 
         //Compares expected result with the actual result.
         Assert.assertEquals(expected, result);
-    }//end getSetLNameTest
+    }//end getSetTDateTest
+
+    @Test
+    public void getSetCheckTest() throws Exception {
+
+        //setter
+        mockTran.setCheck(1);
+
+        //Sets the result using getter
+        String result = mockTran.getCheck() + "";
+
+        //What the expected result is
+        String expected = "1";
+
+        //Compares expected result with the actual result.
+        Assert.assertEquals(expected, result);
+    }//end getSetCheckTest
+
+    @Test
+    public void getSetMidTest() throws Exception {
+
+        //setter
+        mockTran.setMid(56);
+
+        //Sets the result using getter
+        String result = mockTran.getMid() + "";
+
+        //What the expected result is
+        String expected = "56";
+
+        //Compares expected result with the actual result.
+        Assert.assertEquals(expected, result);
+    }//end getSetMidTest
     
 }
