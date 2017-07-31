@@ -92,7 +92,7 @@ public class BooksResource {
      *
      * last modified by ricky.clevinger on 7/21/17
      */
-    public List<Books> getByBookId(@PathVariable(value = "id") int id) throws SQLException  {
+    public List<Books> getByBookId(@PathVariable(value = "id") int id)   {
         return bookRepository.findByBookId(id);
     }//end getByBookId
 
@@ -163,6 +163,11 @@ public class BooksResource {
         bookRepository.save(temp);
         return "Success";
     }//end insert
+
+    @ExceptionHandler(value = NumberFormatException.class)
+    public String nfeHandler(NumberFormatException e){
+        return "Improper input";
+    }
 
 
 }
