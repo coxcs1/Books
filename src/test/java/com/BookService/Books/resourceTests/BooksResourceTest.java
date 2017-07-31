@@ -2,7 +2,6 @@ package com.BookService.Books.resourceTests;
 
 import Books.model.Books;
 import Books.resource.BooksResource;
-import Books.resource.MembersResource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -17,6 +16,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -25,15 +25,14 @@ public class BooksResourceTest {
 
 
     @Autowired
-    private MockMvc mockMvc;
+    MockMvc mockMvc;
 
     @MockBean
-    private BooksResource booksResource;
-
-    List<Books> mockFullList = Arrays.asList(new Books(1, "HarryPotter", "Joanne", "Rowling", 1, 1, 0),
+    BooksResource booksResource;
+    private List<Books> mockFullList = Arrays.asList(new Books(1, "HarryPotter", "Joanne", "Rowling", 1, 1, 0),
             new Books(2, "DresdenFiles", "Jim", "Butcher", 1, 1, 0),
             new Books(3, "PeterRabbit", "Beatrix", "Potter", 1, 2, 6));
-    List<Books> mockBooks;
+    private List<Books> mockBooks;
 
 
     @Test
@@ -68,7 +67,7 @@ public class BooksResourceTest {
     public void getByTitleTest() throws Exception {
 
         // Creates a list of one to return of specific element in mockFullList
-        mockBooks = Arrays.asList(mockFullList.get(0));
+        mockBooks = Collections.singletonList(mockFullList.get(0));
 
         //Returns mockFullList when getAll is called.
         Mockito.when(
@@ -93,7 +92,7 @@ public class BooksResourceTest {
     public void getByValidFNameTest() throws Exception {
 
         // Creates a list of one to return of specific element in mockFullList
-        mockBooks = Arrays.asList(mockFullList.get(2));
+        mockBooks = Collections.singletonList(mockFullList.get(2));
 
         //Returns mockFullList when getAll is called.
         Mockito.when(
@@ -120,7 +119,7 @@ public class BooksResourceTest {
     public void getByInvalidFNameTest() throws Exception {
 
         // Creates a list of one to return of specific element in mockFullList
-        mockBooks = Arrays.asList();
+        mockBooks = Collections.emptyList();
 
         //Returns mockFullList when getAll is called.
         Mockito.when(
@@ -148,7 +147,7 @@ public class BooksResourceTest {
     public void getByValidLNameTest() throws Exception {
 
         // Creates a list of one to return of specific element in mockFullList
-        mockBooks = Arrays.asList(mockFullList.get(2));
+        mockBooks = Collections.singletonList(mockFullList.get(2));
 
         //Returns mockFullList when getAll is called.
         Mockito.when(
@@ -175,7 +174,7 @@ public class BooksResourceTest {
     public void getByInValidLNameTest() throws Exception {
 
         // Creates a list of one to return of specific element in mockFullList
-        mockBooks = Arrays.asList();
+        mockBooks = Collections.emptyList();
 
         //Returns mockFullList when getAll is called.
         Mockito.when(
@@ -201,7 +200,7 @@ public class BooksResourceTest {
     public void getByValidBookIdTest() throws Exception {
 
         // Creates a list of one to return of specific element in mockFullList
-        mockBooks = Arrays.asList(mockFullList.get(1));
+        mockBooks = Collections.singletonList(mockFullList.get(1));
 
         //Returns mockFullList when getAll is called.
         Mockito.when(
@@ -226,7 +225,7 @@ public class BooksResourceTest {
     public void getByInValidBookIdTest() throws Exception {
 
         // Creates a list of one to return of specific element in mockFullList
-        mockBooks = Arrays.asList();
+        mockBooks = Collections.emptyList();
 
         //Returns mockFullList when getAll is called.
         Mockito.when(
@@ -278,7 +277,7 @@ public class BooksResourceTest {
     public void getByInValidCheckTest() throws Exception {
 
         // Creates a list of one to return of specific element in mockFullList
-        mockBooks = Arrays.asList();
+        mockBooks = Collections.emptyList();
 
         //Returns mockFullList when getAll is called.
         Mockito.when(
@@ -331,7 +330,7 @@ public class BooksResourceTest {
     public void getByInValidLibIdTest() throws Exception {
 
         // Creates a list of one to return of specific element in mockFullList
-        mockBooks = Arrays.asList();
+        mockBooks = Collections.emptyList();
 
         //Returns mockFullList when getAll is called.
         Mockito.when(

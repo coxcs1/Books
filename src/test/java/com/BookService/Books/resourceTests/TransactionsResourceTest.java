@@ -1,8 +1,6 @@
 package com.BookService.Books.resourceTests;
 
-
 import Books.model.Transaction;
-import Books.resource.BooksResource;
 import Books.resource.TransactionsResource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,22 +16,21 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import java.sql.Timestamp;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
-
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = TransactionsResource.class, secure = false)
 public class TransactionsResourceTest {
 
     @Autowired
-    private MockMvc mockMvc;
+    MockMvc mockMvc;
 
     @MockBean
-    private TransactionsResource transactionsResource;
+    TransactionsResource transactionsResource;
 
-    Timestamp timestamp = null;
-    List <Transaction> mockFullList = Arrays.asList(new Transaction(1, 1, timestamp,1,1));
+    private Timestamp timestamp = null;
+    private List <Transaction> mockFullList = Collections.singletonList(new Transaction(1, 1, timestamp, 1, 1));
 
 
     @Test

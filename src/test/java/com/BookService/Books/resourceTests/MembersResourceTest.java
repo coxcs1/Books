@@ -2,9 +2,9 @@ package com.BookService.Books.resourceTests;
 
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import Books.model.Member;
-import Books.resource.BooksResource;
 import Books.resource.MembersResource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,14 +26,14 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 public class MembersResourceTest {
 
     @Autowired
-    private MockMvc mockMvc;
+    protected MockMvc mockMvc;
 
     @MockBean
-    private MembersResource membersResource;
+    protected MembersResource membersResource;
 
-    List <Member> mockFullList = Arrays.asList(new Member(1, "Ricky", "Clevinger"),
+    private List <Member> mockFullList = Arrays.asList(new Member(1, "Ricky", "Clevinger"),
             new Member(2, "Ben", "Coalson"), new Member(3, "Jack", "Sparrow"));
-    List <Member> mockMem;
+    private List <Member> mockMem;
 
     @Test
     public void getAllTest() throws Exception {
@@ -62,7 +62,7 @@ public class MembersResourceTest {
     public void getByIdTest() throws Exception {
 
         // Creates a list of one to return of specific element in mockFullList
-        mockMem = Arrays.asList(mockFullList.get(1));
+        mockMem = Collections.singletonList(mockFullList.get(1));
 
         //Returns mockFullList when getAll is called.
         Mockito.when(
@@ -88,7 +88,7 @@ public class MembersResourceTest {
     public void getByFNameTest() throws Exception {
 
         // Creates a list of one to return of specific element in mockFullList
-        mockMem = Arrays.asList(mockFullList.get(2));
+        mockMem = Collections.singletonList(mockFullList.get(2));
 
         //Returns mockFullList when getAll is called.
         Mockito.when(
@@ -114,7 +114,7 @@ public class MembersResourceTest {
     public void getByLNameTest() throws Exception {
 
         // Creates a list of one to return of specific element in mockFullList
-        mockMem = Arrays.asList(mockFullList.get(2));
+        mockMem = Collections.singletonList(mockFullList.get(2));
 
         //Returns mockFullList when getAll is called.
         Mockito.when(
