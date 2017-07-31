@@ -5,6 +5,8 @@ import Books.repository.BooksRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.constraints.Null;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
@@ -164,8 +166,12 @@ public class BooksResource {
         return "Success";
     }//end insert
 
-    @ExceptionHandler(value = NumberFormatException.class)
+    @ExceptionHandler({NumberFormatException.class, NullPointerException.class})
     public String nfeHandler(NumberFormatException e){
+        return "Improper input";
+    }
+
+    public String npeHandler(NullPointerException e){
         return "Improper input";
     }
 
