@@ -164,7 +164,7 @@ public class BooksResourceTest {
 
 
     @Test
-    public void getByCheckTest() throws Exception {
+    public void getByValidCheckTest() throws Exception {
 
         // Creates a list of one to return of specific element in mockFullList
         mockBooks = Arrays.asList(mockFullList.get(0),mockFullList.get(1));
@@ -187,11 +187,36 @@ public class BooksResourceTest {
 
         //Compares expected result with the actual result.
         JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
-    }//end getByCheckTest
+    }//end getByValidCheckTest
+
+    @Test
+    public void getByInValidCheckTest() throws Exception {
+
+        // Creates a list of one to return of specific element in mockFullList
+        mockBooks = Arrays.asList();
+
+        //Returns mockFullList when getAll is called.
+        Mockito.when(
+                booksResource.getByCheck(3)).thenReturn(mockBooks);
+
+        //Builds the request
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
+                "/books/check/3").accept(
+                MediaType.APPLICATION_JSON);
+
+        //Sets the result
+        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+
+        //What the expected result is
+        String expected = "[]";
+
+        //Compares expected result with the actual result.
+        JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
+    }//end getByValidCheckTest
 
 
     @Test
-    public void getByLibIdTest() throws Exception {
+    public void getByValidLibIdTest() throws Exception {
 
         // Creates a list of one to return of specific element in mockFullList
         mockBooks = Arrays.asList(mockFullList.get(0),mockFullList.get(1),mockFullList.get(2));
@@ -215,6 +240,31 @@ public class BooksResourceTest {
 
         //Compares expected result with the actual result.
         JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
-    }//end getByLibIdTest
+    }//end getByValidLibIdTest
+
+    @Test
+    public void getByInValidLibIdTest() throws Exception {
+
+        // Creates a list of one to return of specific element in mockFullList
+        mockBooks = Arrays.asList();
+
+        //Returns mockFullList when getAll is called.
+        Mockito.when(
+                booksResource.getByLibId(57)).thenReturn(mockBooks);
+
+        //Builds the request
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
+                "/books/libId/57").accept(
+                MediaType.APPLICATION_JSON);
+
+        //Sets the result
+        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+
+        //What the expected result is
+        String expected = "[]";
+
+        //Compares expected result with the actual result.
+        JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
+    }//end getByInValidLibIdTest
 
 }
