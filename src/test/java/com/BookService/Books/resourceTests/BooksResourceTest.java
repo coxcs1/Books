@@ -18,6 +18,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import static java.util.Collections.emptyList;
+import static java.util.Collections.singletonList;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = BooksResource.class, secure = false)
@@ -33,6 +35,8 @@ public class BooksResourceTest {
             new Books(2, "DresdenFiles", "Jim", "Butcher", 1, 1, 0),
             new Books(3, "PeterRabbit", "Beatrix", "Potter", 1, 2, 6));
     private List<Books> mockBooks;
+    private String expected;
+    private String expected2;
 
 
     @Test
@@ -51,11 +55,11 @@ public class BooksResourceTest {
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 
         //What the expected result is
-        String expected = "[{bookId:1,title:HarryPotter,authFName:Joanne, authLName:Rowling, libId:1,check:1,mid:0}," +
+        expected = "[{bookId:1,title:HarryPotter,authFName:Joanne, authLName:Rowling, libId:1,check:1,mid:0}," +
                 "{bookId:2,title:DresdenFiles,authFName:Jim, authLName:Butcher, libId:1,check:1,mid:0}," +
                 "{bookId:3,title:PeterRabbit,authFName:Beatrix, authLName:Potter, libId:1,check:2,mid:6}]";
 
-        String expected2 = "[{bookId:1,title:HarryPotter,authFName:Joanne, authLName:Rowling, libId:1,check:1,mid:0}," +
+        expected2 = "[{bookId:1,title:HarryPotter,authFName:Joanne, authLName:Rowling, libId:1,check:1,mid:0}," +
                 "{bookId:2,title:DresdenFiles,authFName:Jim, authLName:Butcher, libId:1,check:1,mid:0}]";
 
         //Compares expected result with the actual result.
@@ -64,10 +68,10 @@ public class BooksResourceTest {
     }//end getAllTest
 
     @Test
-    public void getByTitleTest() throws Exception {
+    public void getByValidTitleTest() throws Exception {
 
         // Creates a list of one to return of specific element in mockFullList
-        mockBooks = Collections.singletonList(mockFullList.get(0));
+        mockBooks = singletonList(mockFullList.get(0));
 
         //Returns mockFullList when getAll is called.
         Mockito.when(
@@ -82,17 +86,44 @@ public class BooksResourceTest {
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 
         //What the expected result is
-        String expected = "[{bookId:1,title:HarryPotter,authFName:Joanne, authLName:Rowling, libId:1,check:1,mid:0}]";
+        expected = "[{bookId:1,title:HarryPotter,authFName:Joanne, authLName:Rowling, libId:1,check:1,mid:0}]";
+        expected2 = "[]";
 
         //Compares expected result with the actual result.
         JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
-    }//end getByTitleTest
+        JSONAssert.assertNotEquals(expected2, result.getResponse().getContentAsString(), false);
+    }//end getByValidTitleTest
+
+    @Test
+    public void getByInValidTitleTest() throws Exception {
+
+        // Creates a list of one to return of specific element in mockFullList
+        mockBooks = emptyList();
+
+        //Returns mockFullList when getAll is called.
+        Mockito.when(
+                booksResource.getByTitle("Turtle")).thenReturn(mockBooks);
+
+        //Builds the request
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
+                "/books/title/Turtle").accept(
+                MediaType.APPLICATION_JSON);
+
+        //Sets the result
+        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+
+        //What the expected result is
+        expected = "[]";
+
+        //Compares expected result with the actual result.
+        JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
+    }//end getByValidTitleTest
 
     @Test
     public void getByValidFNameTest() throws Exception {
 
         // Creates a list of one to return of specific element in mockFullList
-        mockBooks = Collections.singletonList(mockFullList.get(2));
+        mockBooks = singletonList(mockFullList.get(2));
 
         //Returns mockFullList when getAll is called.
         Mockito.when(
@@ -107,8 +138,8 @@ public class BooksResourceTest {
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 
         //What the expected result is
-        String expected = "[{bookId:3,title:PeterRabbit,authFName:Beatrix,authLName:Potter,libId:1,check:2,mid:6}]";
-        String expected2 = "[]";
+        expected = "[{bookId:3,title:PeterRabbit,authFName:Beatrix,authLName:Potter,libId:1,check:2,mid:6}]";
+        expected2 = "[]";
 
         //Compares expected result with the actual result.
         JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
@@ -134,8 +165,8 @@ public class BooksResourceTest {
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 
         //What the expected result is
-        String expected = "[]";
-        String expected2 = "[{bookId:3,title:PeterRabbit,authFName:Beatrix,authLName:Potter,libId:1,check:2,mid:6}]";
+        expected = "[]";
+        expected2 = "[{bookId:3,title:PeterRabbit,authFName:Beatrix,authLName:Potter,libId:1,check:2,mid:6}]";
 
         //Compares expected result with the actual result.
         JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
@@ -147,7 +178,7 @@ public class BooksResourceTest {
     public void getByValidLNameTest() throws Exception {
 
         // Creates a list of one to return of specific element in mockFullList
-        mockBooks = Collections.singletonList(mockFullList.get(2));
+        mockBooks = singletonList(mockFullList.get(2));
 
         //Returns mockFullList when getAll is called.
         Mockito.when(
@@ -162,8 +193,8 @@ public class BooksResourceTest {
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 
         //What the expected result is
-        String expected = "[{bookId:3,title:PeterRabbit,authFName:Beatrix,authLName:Potter,libId:1,check:2,mid:6}]";
-        String expected2 = "[]";
+        expected = "[{bookId:3,title:PeterRabbit,authFName:Beatrix,authLName:Potter,libId:1,check:2,mid:6}]";
+        expected2 = "[]";
 
         //Compares expected result with the actual result.
         JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
@@ -174,22 +205,22 @@ public class BooksResourceTest {
     public void getByInValidLNameTest() throws Exception {
 
         // Creates a list of one to return of specific element in mockFullList
-        mockBooks = Collections.emptyList();
+        mockBooks = emptyList();
 
         //Returns mockFullList when getAll is called.
         Mockito.when(
-                booksResource.getByLName("Potterific")).thenReturn(mockBooks);
+                booksResource.getByLName("Potterific34")).thenReturn(mockBooks);
 
         //Builds the request
         RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
-                "/books/authLName/Potterific").accept(
+                "/books/authLName/Potterific34").accept(
                 MediaType.APPLICATION_JSON);
 
         //Sets the result
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 
         //What the expected result is
-        String expected = "[]";
+        expected = "[]";
 
         //Compares expected result with the actual result.
         JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
@@ -200,7 +231,7 @@ public class BooksResourceTest {
     public void getByValidBookIdTest() throws Exception {
 
         // Creates a list of one to return of specific element in mockFullList
-        mockBooks = Collections.singletonList(mockFullList.get(1));
+        mockBooks = singletonList(mockFullList.get(1));
 
         //Returns mockFullList when getAll is called.
         Mockito.when(
@@ -215,7 +246,7 @@ public class BooksResourceTest {
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 
         //What the expected result is
-        String expected = "[{bookId:2,title:DresdenFiles,authFName:Jim,authLName:Butcher,libId:1,check:1,mid:0}]";
+        expected = "[{bookId:2,title:DresdenFiles,authFName:Jim,authLName:Butcher,libId:1,check:1,mid:0}]";
 
         //Compares expected result with the actual result.
         JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
@@ -225,22 +256,22 @@ public class BooksResourceTest {
     public void getByInValidBookIdTest() throws Exception {
 
         // Creates a list of one to return of specific element in mockFullList
-        mockBooks = Collections.emptyList();
+        mockBooks = emptyList();
 
         //Returns mockFullList when getAll is called.
         Mockito.when(
-                booksResource.getByBookId(1000)).thenReturn(mockBooks);
+                booksResource.getByBookId(-56)).thenReturn(mockBooks);
 
         //Builds the request
         RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
-                "/books/bookId/1000").accept(
+                "/books/bookId/-56").accept(
                 MediaType.APPLICATION_JSON);
 
         //Sets the result
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 
         //What the expected result is
-        String expected = "[]";
+        expected = "[]";
 
         //Compares expected result with the actual result.
         JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
@@ -266,7 +297,7 @@ public class BooksResourceTest {
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 
         //What the expected result is
-        String expected = "[{bookId:1,title:HarryPotter,authFName:Joanne, authLName:Rowling, libId:1,check:1,mid:0}," +
+        expected = "[{bookId:1,title:HarryPotter,authFName:Joanne, authLName:Rowling, libId:1,check:1,mid:0}," +
                 "{bookId:2,title:DresdenFiles,authFName:Jim,authLName:Butcher,libId:1,check:1,mid:0}]";
 
         //Compares expected result with the actual result.
@@ -277,22 +308,22 @@ public class BooksResourceTest {
     public void getByInValidCheckTest() throws Exception {
 
         // Creates a list of one to return of specific element in mockFullList
-        mockBooks = Collections.emptyList();
+        mockBooks = emptyList();
 
         //Returns mockFullList when getAll is called.
         Mockito.when(
-                booksResource.getByCheck(3)).thenReturn(mockBooks);
+                booksResource.getByCheck(Integer.MAX_VALUE)).thenReturn(mockBooks);
 
         //Builds the request
         RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
-                "/books/check/3").accept(
+                "/books/check/" + Integer.MAX_VALUE).accept(
                 MediaType.APPLICATION_JSON);
 
         //Sets the result
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 
         //What the expected result is
-        String expected = "[]";
+        expected = "[]";
 
         //Compares expected result with the actual result.
         JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
@@ -318,7 +349,7 @@ public class BooksResourceTest {
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 
         //What the expected result is
-        String expected = "[{bookId:1,title:HarryPotter,authFName:Joanne, authLName:Rowling, libId:1,check:1,mid:0}," +
+        expected = "[{bookId:1,title:HarryPotter,authFName:Joanne, authLName:Rowling, libId:1,check:1,mid:0}," +
                 "{bookId:2,title:DresdenFiles,authFName:Jim,authLName:Butcher,libId:1,check:1,mid:0}," +
                 "{bookId:3,title:PeterRabbit,authFName:Beatrix,authLName:Potter,libId:1,check:2,mid:6}]";
 
@@ -330,22 +361,22 @@ public class BooksResourceTest {
     public void getByInValidLibIdTest() throws Exception {
 
         // Creates a list of one to return of specific element in mockFullList
-        mockBooks = Collections.emptyList();
+        mockBooks = emptyList();
 
         //Returns mockFullList when getAll is called.
         Mockito.when(
-                booksResource.getByLibId(57)).thenReturn(mockBooks);
+                booksResource.getByLibId(Integer.MIN_VALUE)).thenReturn(mockBooks);
 
         //Builds the request
         RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
-                "/books/libId/57").accept(
+                "/books/libId/" + Integer.MIN_VALUE).accept(
                 MediaType.APPLICATION_JSON);
 
         //Sets the result
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 
         //What the expected result is
-        String expected = "[]";
+        expected = "[]";
 
         //Compares expected result with the actual result.
         JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
