@@ -160,7 +160,7 @@ public class BooksResourceTest {
 
         //Compares expected result with the actual result.
         JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
-    }//end getByBookId
+    }//end getByBookIdTest
 
 
     @Test
@@ -187,7 +187,7 @@ public class BooksResourceTest {
 
         //Compares expected result with the actual result.
         JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
-    }//end getByBookId
+    }//end getByCheckTest
 
 
     @Test
@@ -215,6 +215,6 @@ public class BooksResourceTest {
 
         //Compares expected result with the actual result.
         JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
-    }//end getByBookId
+    }//end getByLibIdTest
 
 }
