@@ -23,5 +23,4 @@ public interface BooksRepository extends JpaRepository<Books, Integer> {
     List<Books> findByCheck(int id);
 
 
-
 }
