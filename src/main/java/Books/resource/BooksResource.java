@@ -133,7 +133,7 @@ public class BooksResource {
                            @PathVariable(value = "mid") int mid,
                            @PathVariable(value = "check") int check) throws SQLException{
         Books b = bookRepository.findOne(titleId);
-        Date date = new Date(System.currentTimeMillis() + (1000*60*60*24*7) );
+        Date date = new Date(System.currentTimeMillis() );
         b.setCheck(check);
         b.setMid(mid);
         if (mid == 0){
