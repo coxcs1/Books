@@ -5,8 +5,6 @@ import Books.repository.BooksRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.constraints.Null;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
@@ -22,7 +20,6 @@ public class BooksResource {
     /**
      * Functions delete an entry from database depending on user specified id.
      * URL added to primary url. Allows user input.
-     * @return List of corresponding books from the micro-service.
      *
      * last modified by ricky.clevinger on 7/21/17
      */
@@ -166,10 +163,12 @@ public class BooksResource {
     }//end insert
 
     @ExceptionHandler({NumberFormatException.class, NullPointerException.class})
+    @SuppressWarnings("unused")
     public String nfeHandler(NumberFormatException e){
         return "Improper input";
     }
 
+    @SuppressWarnings("unused")
     public String npeHandler(NullPointerException e){
         return "Improper input";
     }
