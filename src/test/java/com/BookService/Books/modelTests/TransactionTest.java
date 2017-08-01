@@ -7,7 +7,7 @@ import java.sql.Timestamp;
 
 public class TransactionTest {
 
-    Transaction mockTran = new Transaction();
+    private Transaction mockTran = new Transaction();
 
     @Test
     public void getSetTranTest() throws Exception {

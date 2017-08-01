@@ -28,10 +28,10 @@ import static java.util.Collections.emptyList;
 public class MembersResourceTest {
 
     @Autowired
-    protected MockMvc mockMvc;
+    MockMvc mockMvc;
 
     @MockBean
-    protected MembersResource membersResource;
+    MembersResource membersResource;
 
     private List <Member> mockFullList = Arrays.asList(new Member(1, "Ricky", "Clevinger"),
             new Member(2, "Ben", "Coalson"), new Member(3, "Jack", "Sparrow"));
