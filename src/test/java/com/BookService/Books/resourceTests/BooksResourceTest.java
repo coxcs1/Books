@@ -25,7 +25,6 @@ import static java.util.Collections.singletonList;
 @WebMvcTest(value = BooksResource.class, secure = false)
 public class BooksResourceTest {
 
-
     @Autowired
     MockMvc mockMvc;
 
