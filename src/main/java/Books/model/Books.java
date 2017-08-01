@@ -6,12 +6,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.sql.Date;
-import java.sql.Timestamp;
-@XmlRootElement
-@Entity
+
 /**
  * Object class used for querying database.
  */
+@XmlRootElement
+@Entity
 public class Books {
 
 

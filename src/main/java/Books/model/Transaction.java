@@ -4,13 +4,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.sql.Date;
 import java.sql.Timestamp;
 
-@Entity
 /**
  * Object class used for querying database.
  */
+@Entity
 public class Transaction {
 
     @Id
