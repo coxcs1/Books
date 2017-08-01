@@ -45,5 +45,4 @@ public class TransactionsResource {
         return "Success";
     }//end insert
 
-
 }
