@@ -36,6 +36,8 @@ public class MembersResourceTest {
     private List <Member> mockFullList = Arrays.asList(new Member(1, "Ricky", "Clevinger"),
             new Member(2, "Ben", "Coalson"), new Member(3, "Jack", "Sparrow"));
     private List <Member> mockMem;
+    private String expected;
+    private String notEqualsExpected;
 
     @Test
     public void getAllTest() throws Exception {
@@ -53,10 +55,12 @@ public class MembersResourceTest {
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 
         //What the expected result is
-        String expected = "[{id:1,fname:Ricky,lname:Clevinger},{id:2,fname:Ben,lname:Coalson}, {id:3,fname:Jack,lname:Sparrow}]";
+        expected = "[{id:1,fname:Ricky,lname:Clevinger},{id:2,fname:Ben,lname:Coalson}, {id:3,fname:Jack,lname:Sparrow}]";
+        notEqualsExpected = "[]";
 
         //Compares expected result with the actual result.
         JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
+        JSONAssert.assertNotEquals(notEqualsExpected, result.getResponse().getContentAsString(), false);
     }//end getAllTest
 
 
@@ -79,10 +83,12 @@ public class MembersResourceTest {
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 
         //What the expected result is
-        String expected = "[{id:2,fname:Ben,lname:Coalson}]";
+        expected = "[{id:2,fname:Ben,lname:Coalson}]";
+        notEqualsExpected = "[]";
 
         //Compares expected result with the actual result.
         JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
+        JSONAssert.assertNotEquals(notEqualsExpected, result.getResponse().getContentAsString(), false);
     }//end getByValidIdTest
 
     @Test
@@ -104,10 +110,12 @@ public class MembersResourceTest {
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 
         //What the expected result is
-        String expected = "[]";
+        expected = "[]";
+        notEqualsExpected = "[{id:3,fname:Jack,lname:Sparrow}]";
 
         //Compares expected result with the actual result.
         JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
+        JSONAssert.assertNotEquals(notEqualsExpected, result.getResponse().getContentAsString(), false);
     }//end getByInValidIdTest
 
 
@@ -130,10 +138,12 @@ public class MembersResourceTest {
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 
         //What the expected result is
-        String expected = "[{id:3,fname:Jack,lname:Sparrow}]";
+        expected = "[{id:3,fname:Jack,lname:Sparrow}]";
+        notEqualsExpected = "[]";
 
         //Compares expected result with the actual result.
         JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
+        JSONAssert.assertNotEquals(notEqualsExpected, result.getResponse().getContentAsString(), false);
     }//end getByValidFNameTest
 
     @Test
@@ -155,15 +165,17 @@ public class MembersResourceTest {
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 
         //What the expected result is
-        String expected = "[]";
+        expected = "[]";
+        notEqualsExpected = "[{id:3,fname:Jack,lname:Sparrow}]";
 
         //Compares expected result with the actual result.
         JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
+        JSONAssert.assertNotEquals(notEqualsExpected, result.getResponse().getContentAsString(), false);
     }//end getByInValidFNameTest
 
 
     @Test
-    public void getByLNameTest() throws Exception {
+    public void getByValidLNameTest() throws Exception {
 
         // Creates a list of one to return of specific element in mockFullList
         mockMem = Collections.singletonList(mockFullList.get(2));
@@ -181,10 +193,39 @@ public class MembersResourceTest {
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 
         //What the expected result is
-        String expected = "[{id:3,fname:Jack,lname:Sparrow}]";
+        expected = "[{id:3,fname:Jack,lname:Sparrow}]";
+        notEqualsExpected = "[]";
 
         //Compares expected result with the actual result.
         JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
-    }//end getByLNameTest
+        JSONAssert.assertNotEquals(notEqualsExpected, result.getResponse().getContentAsString(), false);
+    }//end getByValidLNameTest
+
+    @Test
+    public void getByInValidLNameTest() throws Exception {
+
+        // Creates a list of one to return of specific element in mockFullList
+        mockMem = emptyList();
+
+        //Returns mockFullList when getAll is called.
+        Mockito.when(
+                membersResource.getByLName("!12432gtret234")).thenReturn(mockMem);
+
+        //Builds the request
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
+                "/members/lname/12432gtret234").accept(
+                MediaType.APPLICATION_JSON);
+
+        //Sets the result
+        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+
+        //What the expected result is
+        expected = "[]";
+        notEqualsExpected = "[{id:3,fname:Jack,lname:Sparrow}]";
+
+        //Compares expected result with the actual result.
+        JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
+        JSONAssert.assertNotEquals(notEqualsExpected, result.getResponse().getContentAsString(), false);
+    }//end getByInValidLNameTest
 
 }
