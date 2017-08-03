@@ -125,6 +125,18 @@ public class BooksResource {
      * URL added to primary url. Allows user input.
      * @return List of corresponding books from the micro-service.
      *
+     * last modified by ricky.clevinger on 8/3/17
+     */
+    @GetMapping(value = "/mid/{id}")
+    public List<Books> getByMid(@PathVariable(value = "id") int id) throws SQLException  {
+        return bookRepository.findByMid(id);
+    }//end getByCheck
+
+    /**
+     * Functions querys the micro-service for all entries with matching id from user input.
+     * URL added to primary url. Allows user input.
+     * @return List of corresponding books from the micro-service.
+     *
      * last modified by ricky.clevinger on 7/21/17
      */
     @GetMapping(value = "/checkAndId/{check}/{id}")
