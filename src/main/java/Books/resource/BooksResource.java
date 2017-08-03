@@ -120,6 +120,19 @@ public class BooksResource {
         return bookRepository.findByCheck(id);
     }//end getByCheck
 
+    /**
+     * Functions querys the micro-service for all entries with matching id from user input.
+     * URL added to primary url. Allows user input.
+     * @return List of corresponding books from the micro-service.
+     *
+     * last modified by ricky.clevinger on 7/21/17
+     */
+    @GetMapping(value = "/checkAndId/{check}/{id}")
+    public List<Books> getByCheckAndBookId(@PathVariable(value = "check") int check,
+                                           @PathVariable(value = "id") int id) throws SQLException  {
+        return bookRepository.findByCheckAndBookId(check,id);
+    }//end getByCheckAndBookId
+
 
     /**
      *  Function inserts new book object into database.

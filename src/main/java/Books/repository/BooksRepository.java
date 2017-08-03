@@ -21,6 +21,6 @@ public interface BooksRepository extends JpaRepository<Books, Integer> {
     List<Books> findByBookId(int id);
     List<Books> findByLibId(int id);
     List<Books> findByCheck(int id);
-
+    List<Books> findByCheckAndBookId(int check, int id);
 
 }
