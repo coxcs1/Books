@@ -397,4 +397,114 @@ public class BooksResourceTest {
         JSONAssert.assertNotEquals(notEqualsExpected, result.getResponse().getContentAsString(), false);
     }//end getByInValidLibIdTest
 
+    @Test
+    public void getByValidMidTest() throws Exception {
+
+        // Creates a list of one to return of specific element in mockFullList
+        mockBooks = Arrays.asList(mockFullList.get(0),mockFullList.get(1));
+
+        //Returns mockFullList when getAll is called.
+        Mockito.when(
+                booksResource.getByMid(0)).thenReturn(mockBooks);
+
+        //Builds the request
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
+                "/books/mid/0").accept(
+                MediaType.APPLICATION_JSON);
+
+        //Sets the result
+        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+
+        //What the expected result is
+        expected = "[{bookId:1,title:HarryPotter,authFName:Joanne, authLName:Rowling, libId:1,check:1,mid:0}," +
+                "{bookId:2,title:DresdenFiles,authFName:Jim,authLName:Butcher,libId:1,check:1,mid:0}]";
+        notEqualsExpected = "[]";
+
+        //Compares expected result with the actual result.
+        JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
+        JSONAssert.assertNotEquals(notEqualsExpected, result.getResponse().getContentAsString(), false);
+    }//end getByValidMidTest
+
+    @Test
+    public void getByInValidMidTest() throws Exception {
+
+        // Creates a list of one to return of specific element in mockFullList
+        mockBooks = emptyList();
+
+        //Returns mockFullList when getAll is called.
+        Mockito.when(
+                booksResource.getByMid(Integer.MIN_VALUE)).thenReturn(mockBooks);
+
+        //Builds the request
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
+                "/books/mid/" + Integer.MIN_VALUE).accept(
+                MediaType.APPLICATION_JSON);
+
+        //Sets the result
+        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+
+        //What the expected result is
+        expected = "[]";
+        notEqualsExpected = "[{bookId:3,title:PeterRabbit,authFName:Beatrix,authLName:Potter,libId:1,check:2,mid:6}]";
+
+        //Compares expected result with the actual result.
+        JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
+        JSONAssert.assertNotEquals(notEqualsExpected, result.getResponse().getContentAsString(), false);
+    }//end getByInValidMidTest
+
+
+    @Test
+    public void getByValidCheckAndBookIdTest() throws Exception {
+
+        // Creates a list of one to return of specific element in mockFullList
+        mockBooks = Collections.singletonList(mockFullList.get(0));
+
+        //Returns mockFullList when getAll is called.
+        Mockito.when(
+                booksResource.getByCheckAndBookId(1,0)).thenReturn(mockBooks);
+
+        //Builds the request
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
+                "/books/checkAndId/1/0").accept(
+                MediaType.APPLICATION_JSON);
+
+        //Sets the result
+        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+
+        //What the expected result is
+        expected = "[{bookId:1,title:HarryPotter,authFName:Joanne, authLName:Rowling, libId:1,check:1,mid:0}]";
+        notEqualsExpected = "[]";
+
+        //Compares expected result with the actual result.
+        JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
+        JSONAssert.assertNotEquals(notEqualsExpected, result.getResponse().getContentAsString(), false);
+    }//end getByValidCheckAndBookIdTest
+
+    @Test
+    public void getByInValidCheckAndBookIdTest() throws Exception {
+
+        // Creates a list of one to return of specific element in mockFullList
+        mockBooks = emptyList();
+
+        //Returns mockFullList when getAll is called.
+        Mockito.when(
+                booksResource.getByCheckAndBookId(6,Integer.MAX_VALUE)).thenReturn(mockBooks);
+
+        //Builds the request
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
+                "/books/checkAndId/6/" + Integer.MAX_VALUE).accept(
+                MediaType.APPLICATION_JSON);
+
+        //Sets the result
+        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+
+        //What the expected result is
+        expected = "[]";
+        notEqualsExpected = "[{bookId:3,title:PeterRabbit,authFName:Beatrix,authLName:Potter,libId:1,check:2,mid:6}]";
+
+        //Compares expected result with the actual result.
+        JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
+        JSONAssert.assertNotEquals(notEqualsExpected, result.getResponse().getContentAsString(), false);
+    }//end getByInValidCheckAndBookIdTest
+
 }
