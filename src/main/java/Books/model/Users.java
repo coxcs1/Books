@@ -9,7 +9,7 @@ import javax.persistence.Id;
 /**
  * Object class used for querying database.
  */
-public class Member {
+public class Users {
 
     @Id
     @GeneratedValue
@@ -20,8 +20,14 @@ public class Member {
     private String fname;
     @Column(name = "Member_LName")
     private String lname;
+    @Column(name = "Email")
+    private String email;
+    @Column(name = "Password")
+    private String password;
+    @Column(name = "Role")
+    private int role;
 
-    public Member() {
+    public Users() {
     }
 
     /**
@@ -30,10 +36,13 @@ public class Member {
      * @param fname
      * @param lname
      */
-    public Member(int id, String fname, String lname) {
+    public Users(int id, String fname, String lname, String email, String password, int role) {
         this.id = id;
         this.fname = fname;
         this.lname = lname;
+        this.email = email;
+        this.password = password;
+        this.role = role;
     }
 
     // Getters and Setters
@@ -60,6 +69,30 @@ public class Member {
 
     public void setLname(String name) {
         this.lname = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
     }
 
 }

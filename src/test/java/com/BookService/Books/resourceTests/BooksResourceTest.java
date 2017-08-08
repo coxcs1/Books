@@ -1,6 +1,6 @@
 package com.BookService.Books.resourceTests;
 
-import Books.model.Books;
+import Books.model.Book;
 import Books.resource.BooksResource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,10 +30,10 @@ public class BooksResourceTest {
 
     @MockBean
     BooksResource booksResource;
-    private List<Books> mockFullList = Arrays.asList(new Books(1, "HarryPotter", "Joanne", "Rowling", 1, 1, 0),
-            new Books(2, "DresdenFiles", "Jim", "Butcher", 1, 1, 0),
-            new Books(3, "PeterRabbit", "Beatrix", "Potter", 1, 2, 6));
-    private List<Books> mockBooks;
+    private List<Book> mockFullList = Arrays.asList(new Book(1, "HarryPotter", "Joanne", "Rowling", 1, 1, 0),
+            new Book(2, "DresdenFiles", "Jim", "Butcher", 1, 1, 0),
+            new Book(3, "PeterRabbit", "Beatrix", "Potter", 1, 2, 6));
+    private List<Book> mockBooks;
     private String expected;
     private String notEqualsExpected;
 

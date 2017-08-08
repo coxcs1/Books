@@ -1,13 +1,13 @@
 package com.BookService.Books.modelTests;
 
-import Books.model.Books;
+import Books.model.Book;
 import org.junit.Assert;
 import org.junit.Test;
 import java.sql.Date;
 
 public class BooksTest {
 
-    Books mockBook = new Books();
+    Book mockBook = new Book();
 
     @Test
     public void getSetTitleTest() throws Exception {

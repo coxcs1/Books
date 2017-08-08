@@ -1,12 +1,12 @@
 package com.BookService.Books.modelTests;
 
-import Books.model.Member;
+import Books.model.Users;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class MemberTest {
 
-    Member mockMem = new Member();
+    Users mockMem = new Users();
 
     @Test
     public void getSetIdTest() throws Exception {

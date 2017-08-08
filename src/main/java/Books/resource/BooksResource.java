@@ -1,6 +1,6 @@
 package Books.resource;
 
-import Books.model.Books;
+import Books.model.Book;
 import Books.repository.BooksRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,7 +38,7 @@ public class BooksResource {
      * last modified by ricky.clevinger on 7/21/17
      */
     @GetMapping(value = "/all")
-    public List<Books> getAll() throws SQLException {
+    public List<Book> getAll() throws SQLException {
         return bookRepository.findAll();
     }//end getAll
 
@@ -51,7 +51,7 @@ public class BooksResource {
      * last modified by ricky.clevinger on 7/21/17
      */
     @GetMapping(value = "/title/{title}")
-    public List<Books> getByTitle(@PathVariable(value = "title") String title) throws SQLException  {
+    public List<Book> getByTitle(@PathVariable(value = "title") String title) throws SQLException  {
         return bookRepository.findByTitle(title);
     }//end getByTitle
 
@@ -64,7 +64,7 @@ public class BooksResource {
      * last modified by ricky.clevinger on 7/21/17
      */
     @GetMapping(value = "/authFName/{fname}")
-    public List<Books> getByFName(@PathVariable(value = "fname") String fname) throws SQLException  {
+    public List<Book> getByFName(@PathVariable(value = "fname") String fname) throws SQLException  {
         return bookRepository.findByAuthFName(fname);
     }//end getByFName
 
@@ -77,7 +77,7 @@ public class BooksResource {
      * last modified by ricky.clevinger on 7/21/17
      */
     @GetMapping(value = "/authLName/{lname}")
-    public List<Books> getByLName(@PathVariable(value = "lname") String lname) throws SQLException  {
+    public List<Book> getByLName(@PathVariable(value = "lname") String lname) throws SQLException  {
         return bookRepository.findByAuthLName(lname);
     }//end getByLname
 
@@ -90,7 +90,7 @@ public class BooksResource {
      * last modified by ricky.clevinger on 7/21/17
      */
     @GetMapping(value = "/bookId/{id}")
-    public List<Books> getByBookId(@PathVariable(value = "id") int id)   {
+    public List<Book> getByBookId(@PathVariable(value = "id") int id)   {
         return bookRepository.findByBookId(id);
     }//end getByBookId
 
@@ -103,7 +103,7 @@ public class BooksResource {
      * last modified by ricky.clevinger on 7/21/17
      */
     @GetMapping(value = "/libId/{id}")
-    public List<Books> getByLibId(@PathVariable(value = "id") int id) throws SQLException  {
+    public List<Book> getByLibId(@PathVariable(value = "id") int id) throws SQLException  {
         return bookRepository.findByLibId(id);
     }//end getByLibID
 
@@ -116,7 +116,7 @@ public class BooksResource {
      * last modified by ricky.clevinger on 7/21/17
      */
     @GetMapping(value = "/check/{id}")
-    public List<Books> getByCheck(@PathVariable(value = "id") int id) throws SQLException  {
+    public List<Book> getByCheck(@PathVariable(value = "id") int id) throws SQLException  {
         return bookRepository.findByCheck(id);
     }//end getByCheck
 
@@ -128,7 +128,7 @@ public class BooksResource {
      * last modified by ricky.clevinger on 8/3/17
      */
     @GetMapping(value = "/mid/{id}")
-    public List<Books> getByMid(@PathVariable(value = "id") int id) throws SQLException  {
+    public List<Book> getByMid(@PathVariable(value = "id") int id) throws SQLException  {
         return bookRepository.findByMid(id);
     }//end getByCheck
 
@@ -140,7 +140,7 @@ public class BooksResource {
      * last modified by ricky.clevinger on 7/21/17
      */
     @GetMapping(value = "/checkAndId/{check}/{id}")
-    public List<Books> getByCheckAndBookId(@PathVariable(value = "check") int check,
+    public List<Book> getByCheckAndBookId(@PathVariable(value = "check") int check,
                                            @PathVariable(value = "id") int id) throws SQLException  {
         return bookRepository.findByCheckAndBookId(check,id);
     }//end getByCheckAndBookId
@@ -157,7 +157,7 @@ public class BooksResource {
     public String checkout(@PathVariable(value = "titleId") int titleId,
                            @PathVariable(value = "mid") int mid,
                            @PathVariable(value = "check") int check) throws SQLException{
-        Books b = bookRepository.findOne(titleId);
+        Book b = bookRepository.findOne(titleId);
         Date date = new Date(System.currentTimeMillis() );
         b.setCheck(check);
         b.setMid(mid);
@@ -182,7 +182,7 @@ public class BooksResource {
     public String insert(@PathVariable(value = "title") String title, @PathVariable(value = "authFName") String authFName,
                          @PathVariable(value = "authLName") String authLName, @PathVariable(value = "libId") int libId)
                             throws SQLException {
-        Books temp = new Books(0,title, authFName, authLName, libId, 1, 0);
+        Book temp = new Book(0,title, authFName, authLName, libId, 1, 0);
         bookRepository.save(temp);
         return "Success";
     }//end insert

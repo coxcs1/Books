@@ -4,7 +4,8 @@ package com.BookService.Books.resourceTests;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import Books.model.Member;
+
+import Books.model.Users;
 import Books.resource.MembersResource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,9 +34,10 @@ public class MembersResourceTest {
     @MockBean
     MembersResource membersResource;
 
-    private List <Member> mockFullList = Arrays.asList(new Member(1, "Ricky", "Clevinger"),
-            new Member(2, "Ben", "Coalson"), new Member(3, "Jack", "Sparrow"));
-    private List <Member> mockMem;
+    private List <Users> mockFullList = Arrays.asList(new Users(1, "Ricky", "Clevinger","email","password",1),
+            new Users(2, "Ben", "Coalson","email","password",1),
+            new Users(3, "Jack", "Sparrow","email","password",1));
+    private List <Users> mockMem;
     private String expected;
     private String notEqualsExpected;
 

@@ -12,7 +12,7 @@ import java.sql.Date;
  */
 @XmlRootElement
 @Entity
-public class Books {
+public class Book {
 
 
     @Id
@@ -36,10 +36,10 @@ public class Books {
     private Date outDate;
 
     //constructors
-    public Books() {
+    public Book() {
     }
 
-    public Books(int bookId, String title, String authFName, String authLName, int libId, int check, int mid) {
+    public Book(int bookId, String title, String authFName, String authLName, int libId, int check, int mid) {
         this.bookId = bookId;
         this.title = title;
         this.authFName = authFName;

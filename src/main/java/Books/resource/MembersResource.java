@@ -1,6 +1,6 @@
 package Books.resource;
 
-import Books.model.Member;
+import Books.model.Users;
 import Books.repository.MembersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,7 +23,7 @@ public class MembersResource {
      * last modified by ricky.clevinger on 7/21/17
      */
     @GetMapping(value = "/all")
-    public List<Member> getAll() {
+    public List<Users> getAll() {
         return memRepository.findAll();
     }//end getAll
 
@@ -36,7 +36,7 @@ public class MembersResource {
      * last modified by ricky.clevinger on 7/21/17
      */
     @GetMapping(value = "/fname/{fname}")
-    public List<Member> getByFName(@PathVariable(value = "fname") String fname)  {
+    public List<Users> getByFName(@PathVariable(value = "fname") String fname)  {
         return memRepository.findByfname(fname);
     }//end getByFName
 
@@ -49,7 +49,7 @@ public class MembersResource {
      * last modified by ricky.clevinger on 7/21/17
      */
     @GetMapping(value = "/lname/{lname}")
-    public List<Member> getByLName(@PathVariable(value = "lname") String lname)  {
+    public List<Users> getByLName(@PathVariable(value = "lname") String lname)  {
         return memRepository.findBylname(lname);
     }//end getByLName
 
@@ -62,7 +62,7 @@ public class MembersResource {
      * last modified by ricky.clevinger on 7/21/17
      */
     @GetMapping(value = "/id/{id}")
-    public List<Member> getById(@PathVariable(value = "id") int id)  {
+    public List<Users> getById(@PathVariable(value = "id") int id)  {
         return memRepository.findById(id);
     }//end getById
 
@@ -75,7 +75,7 @@ public class MembersResource {
      */
     @GetMapping(value = "/insert/{fname}/{lname}")
     public String insert(@PathVariable(value = "fname") String fname, @PathVariable(value = "lname") String lname) {
-        Member temp = new Member(0,fname, lname);
+        Users temp = new Users(0,fname, lname,"email","password", 1);
         memRepository.save(temp);
         return "Success";
     }//end insert
