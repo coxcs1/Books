@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface MembersRepository extends JpaRepository<Users, Integer> {
+public interface UsersRepository extends JpaRepository<Users, Integer> {
 
     // Declaring functions
     List<Users> findByfname(String name);

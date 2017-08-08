@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 import Books.model.Users;
-import Books.resource.MembersResource;
+import Books.resource.UsersResource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -25,14 +25,14 @@ import static java.util.Collections.emptyList;
 
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(value = MembersResource.class, secure = false)
-public class MembersResourceTest {
+@WebMvcTest(value = UsersResource.class, secure = false)
+public class UsersResourceTest {
 
     @Autowired
     MockMvc mockMvc;
 
     @MockBean
-    MembersResource membersResource;
+    UsersResource usersResource;
 
     private List <Users> mockFullList = Arrays.asList(new Users(1, "Ricky", "Clevinger","email","password",1),
             new Users(2, "Ben", "Coalson","email","password",1),
@@ -46,7 +46,7 @@ public class MembersResourceTest {
 
         //Returns mockFullList when getAll is called.
         Mockito.when(
-                membersResource.getAll()).thenReturn(mockFullList);
+                usersResource.getAll()).thenReturn(mockFullList);
 
         //Builds the request
         RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
@@ -74,7 +74,7 @@ public class MembersResourceTest {
 
         //Returns mockFullList when getAll is called.
         Mockito.when(
-                membersResource.getById(2)).thenReturn(mockMem);
+                usersResource.getById(2)).thenReturn(mockMem);
 
         //Builds the request
         RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
@@ -101,7 +101,7 @@ public class MembersResourceTest {
 
         //Returns mockFullList when getAll is called.
         Mockito.when(
-                membersResource.getById(Integer.MAX_VALUE)).thenReturn(mockMem);
+                usersResource.getById(Integer.MAX_VALUE)).thenReturn(mockMem);
 
         //Builds the request
         RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
@@ -129,7 +129,7 @@ public class MembersResourceTest {
 
         //Returns mockFullList when getAll is called.
         Mockito.when(
-                membersResource.getByFName("Jack")).thenReturn(mockMem);
+                usersResource.getByFName("Jack")).thenReturn(mockMem);
 
         //Builds the request
         RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
@@ -156,7 +156,7 @@ public class MembersResourceTest {
 
         //Returns mockFullList when getAll is called.
         Mockito.when(
-                membersResource.getByFName("455gre3")).thenReturn(mockMem);
+                usersResource.getByFName("455gre3")).thenReturn(mockMem);
 
         //Builds the request
         RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
@@ -184,7 +184,7 @@ public class MembersResourceTest {
 
         //Returns mockFullList when getAll is called.
         Mockito.when(
-                membersResource.getByLName("Sparrow")).thenReturn(mockMem);
+                usersResource.getByLName("Sparrow")).thenReturn(mockMem);
 
         //Builds the request
         RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
@@ -211,7 +211,7 @@ public class MembersResourceTest {
 
         //Returns mockFullList when getAll is called.
         Mockito.when(
-                membersResource.getByLName("!12432gtret234")).thenReturn(mockMem);
+                usersResource.getByLName("!12432gtret234")).thenReturn(mockMem);
 
         //Builds the request
         RequestBuilder requestBuilder = MockMvcRequestBuilders.get(

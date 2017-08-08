@@ -4,7 +4,7 @@ import Books.model.Users;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class MemberTest {
+public class UsersTest {
 
     Users mockMem = new Users();
 

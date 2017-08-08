@@ -1,7 +1,7 @@
 package Books.resource;
 
 import Books.model.Users;
-import Books.repository.MembersRepository;
+import Books.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -10,10 +10,10 @@ import java.util.List;
 // URL added to primary portion. E.X. localhost:8080/members
 @RequestMapping(value = "/members")
 @RestController
-public class MembersResource {
+public class UsersResource {
 
     @Autowired
-    MembersRepository memRepository;
+    UsersRepository memRepository;
 
     /**
      * Function querys the micro-service for all of the database.
