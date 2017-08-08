@@ -94,4 +94,17 @@ public class UsersResource {
         return "Success";
     }//end delete
 
+
+    /**
+     *  Functions querys the micro-service for all entries with matching info from user input.
+     *  URL added to primary url. Allows user input.
+     * @return List of corresponding members from the micro-service.
+     *
+     * last modified by ricky.clevinger on 7/21/17
+     */
+    @GetMapping(value = "/login/{email}/{password}")
+    public List<Users> getByEmailAndPassword(@PathVariable(value = "email") String email, @PathVariable(value = "password") String password)  {
+        return memRepository.findByEmailAndPassword(email,password);
+    }//end getByEmailAndPassword
+
 }
