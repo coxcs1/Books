@@ -73,9 +73,11 @@ public class UsersResource {
      *
      *  last modified by ricky.clevinger on 7/21/17
      */
-    @GetMapping(value = "/insert/{fname}/{lname}")
-    public String insert(@PathVariable(value = "fname") String fname, @PathVariable(value = "lname") String lname) {
-        Users temp = new Users(0,fname, lname,"email","password", 1);
+    @GetMapping(value = "/insert/{fname}/{lname}/{email}/{password}/{role}")
+    public String insert(@PathVariable(value = "fname") String fname, @PathVariable(value = "lname") String lname,
+                         @PathVariable(value = "email") String email, @PathVariable(value = "password") String password,
+                         @PathVariable(value = "role") int role) {
+        Users temp = new Users(0,fname, lname,email,password, role);
         memRepository.save(temp);
         return "Success";
     }//end insert
