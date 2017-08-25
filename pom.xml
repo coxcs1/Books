@@ -8,7 +8,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>spring-boot-cleardb</name>
+	<name>Books</name>
 	<description>Books micro applications for Library Project</description>
 
 	<parent>
