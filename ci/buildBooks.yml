@@ -18,5 +18,7 @@ run:
   - -exc
   - |
     cd 12FactorSpringBootBooks
+    ls
     mvn package -Dmaven.test.skip=true
+    ls
     cp ./target/Books-0.0.1-SNAPSHOT.jar ../built-books/demo.jar
